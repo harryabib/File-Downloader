@@ -9,8 +9,8 @@
 ### Lancement rapide
 ```bash
 # Cloner le repository
-git clone https://github.com/harryabib/file-downloader.git
-cd file-downloader
+git clone https://github.com/harryabib/File-Downloader.git
+cd File-Downloader
 
 # Construire et lancer l'application
 make up
