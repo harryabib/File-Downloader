@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Downloader</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 py-8">
+    <div class="max-w-4xl mx-auto px-4">
+        
+        <h1 class="text-2xl font-bold text-gray-900 mb-6">File Downloader</h1>
+
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            {% if files %}
+            <table class="w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Name</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Size</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Modified</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Type</th>
+                        <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for file in files %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 text-sm text-gray-900">{{ file.name }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{ file.size }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{ file.modified }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">{{ file.type }}</td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="{{ url_for('download', filename=file.name) }}" 
+                               class="text-blue-600 hover:text-blue-800 font-medium">
+                                Download
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="text-center py-12">
+                <div class="text-gray-400 text-4xl mb-4">📁</div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">No files available</h3>
+                <p class="text-gray-500">There are currently no files to download.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
